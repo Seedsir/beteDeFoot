@@ -7,5 +7,8 @@ import com.seedsir.domain.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
+    // @Query("select mail from User u order");
+
+    User findByEmailAndPassword( String email, String password );
 
 }
