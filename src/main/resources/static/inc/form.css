@@ -1,8 +1,8 @@
 /* Général ------------------------------------------------------------------------------------- */
 body{
-	width:80%;
-	border:solid black 6px;
+	width:90%;
 	margin:auto;
+	border:1px solid #225E79;
 }
 body, p, legend, label, input {
     font: normal 8pt verdana, helvetica, sans-serif;
@@ -25,7 +25,6 @@ p{
 }
 #equipe{
 	margin-top:5px;
-	
 	width:200px;
 	font-size:1.3em;
 }
@@ -41,12 +40,12 @@ p{
 #titre_remerciment{
 	width:100%;
 	margin:auto;
-	background-color:#666C6B;
+	background-color:#38E156;
 }
 #titre_remerciment h2{
-	background-color:#666C6B;
+	background-color:#38E156;
 	text-align:center;
-	color: red;
+	color: #0772A1;
 	font-size:3.5em;
 }
 #remerciements .treeptik{
@@ -149,9 +148,9 @@ form .info {
 /*Titres  -----------------------------------------------------------------------------------------*/
 
 #principal_tittle{
-	background-color:#666C6B;
+	background-color:#38E156;
 	text-align:center;
-	color: red;
+	color: black;
 	font-size:3.5em;
 	
 }
@@ -183,24 +182,82 @@ form .info {
 	font-size:3.5em;
 }
 /*navbar------------------------------------------------------------*/
-
+ 
 .navbar{
+	background-color:#38E156;
+	display:block;
+	justify-content:center;
 	font-size:1.8em;
-	margin-top:15px;
-	margin-bottom:30px;
-	border: 1px #0568CD solid;
-	border-radius:5px;
-	width:90%;
-	margin-left:5%;
+	width:100%;
 	text-align:center;
 }
-.navbar-light .navbarwidth-nav .nav-link{
-	font-size:1.8em;
+
+.navbar a{
+	font-size:2em;
+	color:#0772A1 !important;
+}
+.navbar a:hover{
+	background-color:#2FBE2F;
 }
 #introduction {
-	width:500px;
+	border:1px solid #225E79;
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:center;
+	padding-top:40px;
+	padding-bottom:40px;
+	width:60%;
 	margin:auto;
 	text-align:justify;
+}
+#introduction2 {
+	border:1px solid #225E79;
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:center;
+	padding-top:40px;
+	padding-bottom:40px;
+	width:60%;
+	margin:auto;
+	text-align:justify;
+}
+.compartiment1{
+	
+	background-color:#63AFD0;
+	border:10px white solid;
+	border-radius:0 75px 0 75px;
+	padding:20px;
+	margin-bottom:50px;
+	width:40%;
+}
+.compartiment2{
+	
+	border:10px white solid;
+	border-radius:150px;
+	margin-top:75px;
+	margin-bottom:50px;
+	height:200px;
+	background-color:#38E156;
+	width:40%;
+}
+.compartiment3{
+	
+	border:10px white solid;
+	border-radius:150px;
+	height:200px;
+	background-color:#225E79;
+	width:40%;
+}
+.compartiment4{
+	
+	background-color:#007F16;
+	border:10px white solid;
+	border-radius:0 75px 0 75px;
+	padding:20px;
+	margin-top:-100px;
+	float:right;
+	height:400px;
+	width:40%;
 }
 #introduction p{
 	font-size:1.8em;
@@ -219,9 +276,7 @@ form .info {
 	border:solid black 2px;
 	
 }
-h1{
-	margin-bottom:15px;
-}	
+
 .pseudo{
 	color:red;
 	font-size:1.8em;
@@ -314,6 +369,59 @@ td.action{
 	margin:auto;
 	width:50%;
 }
-#player_picture{
+#player_pcenter-blockicture{
 	margin-bottom:40px;
+}
+#mes_cards{
+	background-color:#545A59;
+	display:flex;
+	justify-content:space-around;
+}
+h5{
+	text-align:center;
+}
+.card-body a{
+	display:block;
+	margin:auto;
+}
+.carousel-item{
+	padding-top:40px;
+}
+.carousel-item .card{
+	width:50%;
+	display:block;
+	margin:auto;
+}
+#carouselExampleIndicators{
+	background-color:#007F16;
+	height:500px;
+}
+
+.carousel-item .card .treeptik{
+	display:block;
+	margin:auto;
+	width:70%;
+}
+.carousel-item .card .afpa{
+	display:block;
+	margin:auto;
+	width:22%;
+}
+.carousel-item .card .linkedin{
+	display:block;
+	margin:auto;
+	width:22%;
+}
+.carousel-item .card .faftt{
+	padding-bottom:-55px;
+	display:block;
+	margin:auto;
+	width:22%;
+}
+.carousel-item .card a{
+	width:50% !important;
+}
+.interligne{
+	height:50px;
+	background-color:#225E79;
 }
