@@ -78,9 +78,9 @@
             	</tr>
             	
             	<tr>
-	            	<td class="text-center"><button id="homeTeam" type="button"  onclick="bet(${match.resultMap.E1.id})" class="btn btn-outline-primary col-lg-4">${match.resultMap.E1.cote }</button></td>
-	            	<td class="text-center"><button id="equality" type="button"  onclick="bet(${match.resultMap.N.id})" class="btn btn-outline-primary col-lg-4">${match.resultMap.N.cote }</button></td>
-	            	<td class="text-center"><button id="extTeam" type="button"  onclick="bet(${match.resultMap.E2.id})" class="btn btn-outline-primary col-lg-4" >${match.resultMap.E2.cote }</button></td>
+	            	<td class="text-center"><button id="homeTeam" type="button"  onclick="bet(${match.resultMap.E1.id})" class="btn btn-outline-dark col-lg-4">${match.resultMap.E1.cote }</button></td>
+	            	<td class="text-center"><button id="equality" type="button"  onclick="bet(${match.resultMap.N.id})" class="btn btn-outline-dark col-lg-4">${match.resultMap.N.cote }</button></td>
+	            	<td class="text-center"><button id="extTeam" type="button"  onclick="bet(${match.resultMap.E2.id})" class="btn btn-outline-dark col-lg-4" >${match.resultMap.E2.cote }</button></td>
             	</tr>
 	</table>
 	</div>
@@ -156,7 +156,6 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
 <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 <script type="text/javascript">
-
 function bet(idResult) {
   var miser = prompt("Entrez une mise:", "Valeur numérique uniquement");
   if (miser == null || isNaN(miser)==true) {
@@ -167,22 +166,21 @@ function bet(idResult) {
   }
   //document.getElementById("demo").innerHTML = txt;
 }
-
-
 function requestPari(mise, idResult){
 	$.ajax({
 	       url : '/betedefoot/validation?mise=' + mise + '&idResult=' + idResult, // La ressource ciblée
 	       type : 'POST', // Le type de la requête HTTP.
 	       success : function(data){ // code_html contient le HTML renvoyé
 	           if(data == 'ok') {
+	        	   alert("Votre pari à bien été enregistré!")
 	        	   window.location = '/betedefoot/ListeMatchs'
+	        	   
 	           } else {
 	        	   alert(data);
 	           }
 	       }
 	    });
 }
-
 </script>
 
 </body>

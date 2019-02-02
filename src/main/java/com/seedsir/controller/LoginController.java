@@ -62,8 +62,20 @@ public class LoginController {
         if ( bindingResult.hasErrors() ) {
             LOGGER.info( "Il y a des erreurs" );
             return "redirect:Inscription";
+        } else if ( userRepository.findByEmail( user.getEmail() ) != null ) {
+
+            return "redirect:Inscription";
+        } else {
+            user.setTockens( 1000 );
+            userRepository.save( user );
+            return "redirect:Connexion";
         }
-        userRepository.save( user );
-        return "redirect:Connexion";
+    }
+
+    @GetMapping( "/deconnexion" )
+    public String deconnecter( HttpServletRequest request ) {
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return "acceuil";
     }
 }

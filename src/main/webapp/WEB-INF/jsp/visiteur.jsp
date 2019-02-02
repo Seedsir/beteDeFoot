@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@page import="com.fasterxml.jackson.databind.ObjectMapper"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -11,6 +12,29 @@
     <link type="text/css" rel="stylesheet" href= <c:out value="/inc/form.css"></c:out> />
 	</head>
 	<body>
+		<!-- <div class="plan-action">
+             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#ticketModal"><i class="fa fa-ticket"></i> Buy Now</a>
+     	</div>
+     	
+		 <div class="modal fade" id="ticketModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	        <div class="modal-dialog" role="document">
+	          <div class="modal-content">
+	            <div class="modal-header">
+	              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                <span aria-hidden="true">&times;</span>
+	              </button>
+	            </div>
+	            <div class="modal-body">
+	              <h4>Coming Soon !<h4>
+	            </div>
+	            <div class="modal-footer">
+	              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+	            </div>
+	          </div>
+	        </div>
+	      </div> -->
+      
+      
 	     <div class="interligne">
 		</div>
  		<div class="navbar navbar-expand-lg navbar-light">
@@ -41,17 +65,30 @@
 		</div>
 		<div class="interligne">
 		</div>
-		<div  id="phrase" class="row">
-			<div class="offset-lg-4 col-lg-4">
-			 	<c:if test="${!empty sessionScope.userSession}">
+		
+		 	<c:choose>
+		 		<c:when test="${!empty sessionScope.userSession}">
 
-                    <%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
-
-                    <p>Bravo <a href="http://localhost:8080/betedefoot/profile"><span class="pseudo">${sessionScope.userSession.pseudo}</span> </a>tu as reussi à accéder à liste des matchs</p>
-
-                </c:if>
-			</div>
-		</div>
+                <div class="user">
+					<i class="fas fa-user"></i><a href="http://localhost:8080/betedefoot/profile" title="Accédez à votre profil en cliquant sur ce lien"><span class="pseudo">${sessionScope.userSession.pseudo}</span> </a>
+					<p class="pseudo">Montant de vos tockens: ${sessionScope.userSession.tockens}</p>	
+				</div>
+				<div class="deconnexion">
+					<button type="submit" class="btn btn-outline-dark" onclick="deconnexion()">Deconnexion</button>
+				</div>
+				<div  id="phrase" class="row">
+					<div class="offset-lg-4 col-lg-4">
+                   		<p>Bonjour voici la liste des matchs de la ${matchs[0].dayNumber} ème journée </p>
+					</div>
+				</div>
+				</c:when>
+				<c:otherwise>
+					<div id="visiteur" class="offset-lg-4 col-lg-4">
+                   		<p>Bonjour voici la liste des matchs de la ${matchs[0].dayNumber} ème journée </p>
+					</div>
+				</c:otherwise>
+            </c:choose>
+		
 		<div id="matchs_list" class="row">
 			
 			<table >
@@ -82,11 +119,18 @@
                     <td class="text-right"><c:out value="${ match.extTeam.teamName}"/></td>
                     <td><c:out value="${ match.matchDate }"/></td>
                     <td class="text-center"><c:out value="${ match.dayNumber }"/></td>
-                    <td class="text-center"><c:out value="${ match.homeCote }"/></td>
-                    <td class="text-center"><c:out value="${ match.nulCote }"/></td>
-                    <td class="text-center"><c:out value="${ match.extCote }"/></td>
-                    <td class="text-center"><button type="submit" class="btn btn-outline-secondary" onclick="parier(${match.id})">Parier sur ce match</button></td>
-       
+                    <td class="text-center"><c:out value="${ match.resultMap.E1.cote }"/></td>
+                    <td class="text-center"><c:out value="${ match.resultMap.N.cote }"/></td>
+                    <td class="text-center"><c:out value="${ match.resultMap.E2.cote }"/></td>
+                    <td class="text-center"><c:choose>
+                    							<c:when test="${!empty sessionScope.userSession}">
+                    								<button id="bet" type="submit" class="btn btn-outline-${boucle.index % 2 == 0 ? 'dark' : 'light'}" onclick="parier(${match.id})">Parier sur ce match</button>
+                    							</c:when>
+                    							<c:otherwise>
+                    								<button id="bet" type="submit" class="btn btn-outline-${boucle.index % 2 == 0 ? 'dark' : 'light'}" title="Veuillez vous connecter afin de parier" disabled>Parier sur ce match</button>
+                    							</c:otherwise>
+                    						</c:choose>
+       				</td>
                     <%-- Lien vers la servlet de paris, avec passage de du user - c'est-à-dire la clé de la Map - en paramètre grâce à la balise <c:param></c:param>. --%>
 
                 </tr>
@@ -131,7 +175,7 @@
 			    <div class="card" >
 						  <img src="/inc/logo_linkedin.png" class="card-img-top  linkedin" alt="logo">
 						<div class="card-body">
-						    <h5 style="border:1px solid black"class="card-title">Linkedin</h5>
+						    <h5 class="card-title">Linkedin</h5>
 						    <p class="card-text">Si vous souhaitez me contacter, vous pouvez cliquer sur ce lien pour consulter mon profil, <span class="requis">ESPOSITO Bastien</span>, sur Linkedin.</p>
 						    <a href="https://www.linkedin.com/in/bastien-esposito-842b70164/" class="btn btn-primary">Visitez mon profil</a>
 						</div>
@@ -165,7 +209,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script type="text/javascript">
-	$("#bet").click(function(id) { window.location="Paris"});
+	function parier(id) {
+		window.location = "Match/" + id;
+	}
+	function deconnexion() {
+		window.location = "deconnexion";
+	}
 	</script>
 	</body>
 </html>

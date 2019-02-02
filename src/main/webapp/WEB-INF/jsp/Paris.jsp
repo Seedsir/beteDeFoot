@@ -111,7 +111,7 @@
 			    <div class="card" >
 						  <img src="/inc/logo_linkedin.png" class="card-img-top  linkedin" alt="logo">
 						<div class="card-body">
-						    <h5 style="border:1px solid black"class="card-title">Linkedin</h5>
+						    <h5 class="card-title">Linkedin</h5>
 						    <p class="card-text">Si vous souhaitez me contacter, vous pouvez cliquer sur ce lien pour consulter mon profil, <span class="requis">ESPOSITO Bastien</span>, sur Linkedin.</p>
 						    <a href="https://www.linkedin.com/in/bastien-esposito-842b70164/" class="btn btn-primary">Visitez mon profil</a>
 						</div>

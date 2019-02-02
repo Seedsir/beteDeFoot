@@ -62,9 +62,11 @@ public class BetController {
             return "Vérifier le montant de vos tockens";
         }
         Optional<Result> result = resultRepository.findById( idResult );
+        float newSold = user.getTockens() - mise;
+        user.setTockens( newSold );
+        user = userRepository.save( user );
         Bet userBet = new Bet( user, result.get(), mise );
         betRepository.save( userBet );
-        // sauvegarder le pari
         return "ok";
     }
 }

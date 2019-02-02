@@ -41,31 +41,34 @@
 		</div>
 		<div class="interligne">
 		</div>
+		<div class="user">
+				<i class="fas fa-user"></i><a href="http://localhost:8080/betedefoot/profile" title="Accédez à votre profil en cliquant sur ce lien"><span class="pseudo">${sessionScope.userSession.pseudo}</span> </a>
+				<p class="pseudo">Montant de vos tockens: ${sessionScope.userSession.tockens}</p>
+		</div>
+		<div class="deconnexion">
+			<button type="submit" class="btn btn-outline-dark" onclick="deconnexion()">Deconnexion</button>
+		</div>
 		<div  id="phrase" class="row">
 			<div class="offset-lg-4 col-lg-4">
-			 	<c:if test="${!empty sessionScope.userSession}">
-
-                    <%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
-
-                    <p>Bravo <a href="http://localhost:8080/betedefoot/profile"><span class="pseudo">${sessionScope.userSession.pseudo}</span> </a>tu as reussi à accéder à liste des matchs</p>
-
-                </c:if>
+                    <p>Bonjour voici la liste des matchs de la ${matchs[0].dayNumber} ème journée </p>
 			</div>
 		</div>
 		<div id="matchs_list" class="row">
 			
-			<table >
-                <tr>
-                    <th class="text-center">Equipe à Domicile</th>
-                    <th class="text-center">Equipe à l'extérieur</th>
-                    <th class="text-center">Date de la rencontre</th>
-                    <th class="text-center">Numéro de la journée</th>
-                    <th class="text-center">Côte équipe domicile</th>
-                    <th class="text-center">Côte match nul</th>
-                    <th class="text-center">Côte équipe extérieure</th>
-                    <th class="text-center">Action</th>
-                  
-                </tr>
+			<table class="table">
+				<thead class="thead-dark">
+	                <tr>
+	                    <th class="text-center">Equipe à Domicile</th>
+	                    <th class="text-center">Equipe à l'extérieur</th>
+	                    <th class="text-center">Date de la rencontre</th>
+	                    <th class="text-center">Numéro de la journée</th>
+	                    <th class="text-center">Côte équipe domicile</th>
+	                    <th class="text-center">Côte match nul</th>
+	                    <th class="text-center">Côte équipe extérieure</th>
+	                    <th class="text-center">Action</th>
+	                  
+	                </tr>
+	             </thead>   
                  <c:forEach items="${ matchs }" var="match" varStatus="boucle">
                  
                  <%-- Simple test de parité sur l'index de parcours, pour alterner la couleur de fond de chaque ligne du tableau. --%>
@@ -82,10 +85,10 @@
                     <td class="text-right"><c:out value="${ match.extTeam.teamName}"/></td>
                     <td><c:out value="${ match.matchDate }"/></td>
                     <td class="text-center"><c:out value="${ match.dayNumber }"/></td>
-                    <td class="text-center"><c:out value="${ match.homeCote }"/></td>
-                    <td class="text-center"><c:out value="${ match.nulCote }"/></td>
-                    <td class="text-center"><c:out value="${ match.extCote }"/></td>
-                    <td class="text-center"><button id="bet" type="submit" class="btn btn-outline-secondary" onclick="parier(${match.id})">Parier sur ce match</button></td>
+                    <td class="text-center"><c:out value="${ match.resultMap.E1.cote}"/></td>
+                    <td class="text-center"><c:out value="${ match.resultMap.N.cote}"/></td>
+                    <td class="text-center"><c:out value="${ match.resultMap.E2.cote}"/></td>
+                    <td class="text-center"><button id="bet" type="submit" class="btn btn-outline-${boucle.index % 2 == 0 ? 'dark' : 'light'}" onclick="parier(${match.id})">Parier sur ce match</button></td>
        
                     <%-- Lien vers la servlet de paris, avec passage de du user - c'est-à-dire la clé de la Map - en paramètre grâce à la balise <c:param></c:param>. --%>
 
@@ -132,7 +135,7 @@
 			    <div class="card" >
 						  <img src="/inc/logo_linkedin.png" class="card-img-top  linkedin" alt="logo">
 						<div class="card-body">
-						    <h5 style="border:1px solid black"class="card-title">Linkedin</h5>
+						    <h5 class="card-title">Linkedin</h5>
 						    <p class="card-text">Si vous souhaitez me contacter, vous pouvez cliquer sur ce lien pour consulter mon profil, <span class="requis">ESPOSITO Bastien</span>, sur Linkedin.</p>
 						    <a href="https://www.linkedin.com/in/bastien-esposito-842b70164/" class="btn btn-primary">Visitez mon profil</a>
 						</div>
@@ -160,6 +163,7 @@
 	</div>
 	<div class="interligne">
 	</div>
+	
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -168,6 +172,9 @@
 	<script type="text/javascript">
 		function parier(id) {
 			window.location = "Match/" + id;
+		}
+		function deconnexion() {
+			window.location = "deconnexion";
 		}
 	</script>
 	</body>

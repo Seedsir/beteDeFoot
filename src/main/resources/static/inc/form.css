@@ -175,6 +175,7 @@ form .info {
 	color:red;
 	background-color:#666C6B;
 }
+
 #liste_match{
 	background-color:#666C6B;
 	text-align:center;
@@ -276,10 +277,24 @@ form .info {
 	border:solid black 2px;
 	
 }
-
-.pseudo{
-	color:red;
-	font-size:1.8em;
+.user{
+	margin-top:20px;
+	margin-left:3%;
+}
+.user i{
+	font-size:6em;
+	border: 2px solid black;
+	padding:10px;
+}
+.user a{
+	font-size:2.5em;
+	margin-left:1%;
+}
+#visiteur{
+	margin-top:40px;
+}
+.deconnexion{
+	margin-left:3%;
 }
 /* Tableaux -------------------------------------------------------------------------------------*/
 
@@ -290,13 +305,17 @@ table{
     height:300px;border: 1px #0568CD solid;
     font-size:1.5em;
 }
-
+#table_infos .table{
+	margin-top:30px;
+	width:70%;
+}
 tr.pair{
     background-color: #efefef;
 }
 
 tr.impair{
-    background-color: #2ACBFB; 
+    background-color: #225E79;
+    color:white; 
 }
 
 th{
@@ -320,21 +339,44 @@ td.action{
 }
 #matchs_list{
 	margin-bottom:40px;
+	
+}
+#matchs_list .table{
+	width:70%;
+	
 }
 #recap_infos_joueur{
+	margin-top:30px;
+	margin-bottom:40px;
+}
+#recap_infos_joueur .table{
+	width:70%;
+}
+#player_picture{
+	
 	margin-bottom:40px;
 }
 #match_table{
 	margin-bottom:40px;
 	
 }
+#match_table .table{
+	margin-top:40px;
+	width:70%;
+}
 #match_table button{
 	font-size:1.5em;	
 }
-
+#match_table .table #match{
+	background-color:#38E156;
+}
 #betValid {
 	margin-top:20px;
 	margin-bottom:40px;
+}
+.recap{
+	display:flex;
+	justify-content:space-around;
 }
 /* Logo equipe préférée -------------------------------------------------------------------------------------*/
 
@@ -354,8 +396,11 @@ td.action{
 	width:50%;
 }
 #equipe_pref figcaption{
+	color:#0568CD;
+	font-size:2em;
 	text-align:center;
 	text-decoration:underline;
+	margin-bottom:15px;
 }
 #player_list{
 	font-size:1.8em;

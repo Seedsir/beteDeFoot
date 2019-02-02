@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="interligne">
-		</div>
+	</div>
  		<div class="navbar navbar-expand-lg navbar-light">
  
 	 		<h1 id = "principal_tittle"><i class="fas fa-futbol"></i> Informations du joueur <i class="fas fa-futbol"></i></h1>
@@ -42,10 +42,16 @@
 			      </li>
 			    </ul>
 			</div>
-		</div>
-		<div class="interligne">
-		</div>
-	
+	</div>
+	<div id="player_picture" class="interligne">
+	</div>
+	<div class="user">
+		<i class="fas fa-user"></i><a href="http://localhost:8080/betedefoot/profile" title="Accédez à votre profil en cliquant sur ce lien"><span class="pseudo">${sessionScope.userSession.pseudo}</span> </a>
+		<p class="pseudo">Montant de vos tockens: ${sessionScope.userSession.tockens}</p>	
+	</div>
+	<div class="deconnexion">
+		<button type="submit" class="btn btn-outline-dark" onclick="deconnexion()">Deconnexion</button>
+	</div>
 	<div id="player_picture">
 		<figure >
 		<img src="/inc/${player.team.teamName}/${player.namePlayer}.jpg" alt="image" class=" offset-lg-4 col-lg-4"/>
@@ -53,33 +59,35 @@
 	</div> 
 	
 	<div id="recap_infos_joueur">
-		<table>
-			<tr>
-                <th class="text-center">Nom</th>
-                <th class="text-center">Prenom</th>
-                <th class="text-center">Date de naissance</th>
-                <th class="text-center">Ville de naissance</th>
-                <th class="text-center">Taille (m)</th>
-                <th class="text-center">Poids (kg)</th>
-                <th class="text-center">Poste</th>
-                <th class="text-center">Carriere</th>
-                <th class="text-center">Meilleur pied</th>
-                <th class="text-center">Palmarès</th>
-                <th class="text-center">Equipe actuelle</th>   
-            </tr>
-            <tr>
-            	<td class="text-center">${player.namePlayer}</td>
-            	<td class="text-center">${player.lastNamePlayer}</td>
-            	<td class="text-center">${player.bornDate}</td>
-            	<td class="text-center">${player.bornTown}</td>
-            	<td class="text-center">${player.size}</td>
-            	<td class="text-center">${player.weight}</td>
-            	<td class="text-center">${player.role}</td>
-            	<td class="text-center">${player.carrier}</td>
-            	<td class="text-center">${player.bestFoot}</td>
-            	<td class="text-center">${player.palmares}</td>
-            	<td class="text-center">${player.team.teamName}</td>
-            </tr>
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+	                <th class="text-center">Nom</th>
+	                <th class="text-center">Prenom</th>
+	                <th class="text-center">Date de naissance</th>
+	                <th class="text-center">Ville de naissance</th>
+	                <th class="text-center">Taille (m)</th>
+	                <th class="text-center">Poids (kg)</th>
+	                <th class="text-center">Poste</th>
+	                <th class="text-center">Carriere</th>
+	                <th class="text-center">Meilleur pied</th>
+	                <th class="text-center">Palmarès</th>
+	                <th class="text-center">Equipe actuelle</th>   
+	            </tr>
+            </thead>
+	            <tr>
+	            	<td class="text-center">${player.namePlayer}</td>
+	            	<td class="text-center">${player.lastNamePlayer}</td>
+	            	<td class="text-center">${player.bornDate}</td>
+	            	<td class="text-center">${player.bornTown}</td>
+	            	<td class="text-center">${player.size}</td>
+	            	<td class="text-center">${player.weight}</td>
+	            	<td class="text-center">${player.role}</td>
+	            	<td class="text-center">${player.carrier}</td>
+	            	<td class="text-center">${player.bestFoot}</td>
+	            	<td class="text-center">${player.palmares}</td>
+	            	<td class="text-center">${player.team.teamName}</td>
+	            </tr>
 		</table>
 	</div>
 	
@@ -121,7 +129,7 @@
 			    <div class="card" >
 						  <img src="/inc/logo_linkedin.png" class="card-img-top  linkedin" alt="logo">
 						<div class="card-body">
-						    <h5 style="border:1px solid black"class="card-title">Linkedin</h5>
+						    <h5 class="card-title">Linkedin</h5>
 						    <p class="card-text">Si vous souhaitez me contacter, vous pouvez cliquer sur ce lien pour consulter mon profil, <span class="requis">ESPOSITO Bastien</span>, sur Linkedin.</p>
 						    <a href="https://www.linkedin.com/in/bastien-esposito-842b70164/" class="btn btn-primary">Visitez mon profil</a>
 						</div>
@@ -154,6 +162,10 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
- 
+<script type="text/javascript">
+	function deconnexion() {
+		window.location = "deconnexion";
+	}
+</script>
 </body>
 </html>

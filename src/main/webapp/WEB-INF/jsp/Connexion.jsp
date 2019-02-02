@@ -45,45 +45,26 @@
 		<div class="interligne">
 		</div>
 		
-        <form class= "formulaire" method="post" action="Connexion">
-            <fieldset class =mon_fieldset"">
-                <legend>Connexion</legend>
-                <p>Vous pouvez vous connecter via ce formulaire.</p>
-                
-				<c:if test="${empty sessionScope.sessionUtilisateur && !empty requestScope.intervalleConnexions}">
-                    <p class="info">(Vous ne vous êtes pas connecté(e) depuis ce navigateur depuis ${requestScope.intervalleConnexions})</p>
-                </c:if>
-                
-                <label for="nom">Adresse email <span class="requis">*</span></label>
-                <input type="email" id="email" name="email" value="<c:out value="${utilisateur.email}"/>" size="20" maxlength="60" />
-                <span class="erreur">${form.erreurs['email']}</span>
-                <br />
+		<form class="formulaire" method="post" action="Connexion">
+			<fieldset>
+				<legend>Connexion</legend>
+				<p>Vous pouvez vous connecter via ce formulaire.</p>	
+				  
+				  <div class="form-group">
+				    <label for="email">Email address:<span class="requis">*</span></label>
+				    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+				    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+				  </div>
 
-                <label for="motdepasse">Mot de passe <span class="requis">*</span></label>
-                <input type="password" id="motdepasse" name="motdepasse" value="" size="20" maxlength="20" />
-                <span class="erreur">${form.erreurs['motdepasse']}</span>
-                <br />
-				<br />
-
-                <label for="memoire">Se souvenir de moi</label>
-                <input type="checkbox" id="memoire" name="memoire" />
-                <br />
-    
-                <input type="submit" value="Connexion" class="sansLabel" />
-                <br />
-                
-                <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
-                <%-- Vérification de la présence d'un objet utilisateur en session --%>
-
-                <c:if test="${!empty sessionScope.sessionUtilisateur}">
-
-                    <%-- Si l'utilisateur existe en session, alors on affiche son adresse email. --%>
-
-                    <p class="succes">Vous êtes connecté(e) avec l'adresse : ${sessionScope.sessionUtilisateur.email}</p>
-
-                </c:if>
-            </fieldset>
-        </form>
+				  <div class="form-group">
+				    <label for="motdepasse">Password:<span class="requis">*</span></label>
+				    <input type="text" name="motdepasse" class="form-control" id="motdepasse" value="" autocomplete="off" required/>
+				  </div>
+				  
+				  <button type="submit" class="btn btn-primary">Connexion</button>
+			</fieldset>
+		</form>
+        
     	
         <div class="legende">
         	<p><span class="requis">(*)</span> Champs requis</p>
@@ -126,7 +107,7 @@
 			    <div class="card" >
 						  <img src="/inc/logo_linkedin.png" class="card-img-top  linkedin" alt="logo">
 						<div class="card-body">
-						    <h5 style="border:1px solid black"class="card-title">Linkedin</h5>
+						    <h5 class="card-title">Linkedin</h5>
 						    <p class="card-text">Si vous souhaitez me contacter, vous pouvez cliquer sur ce lien pour consulter mon profil, <span class="requis">ESPOSITO Bastien</span>, sur Linkedin.</p>
 						    <a href="https://www.linkedin.com/in/bastien-esposito-842b70164/" class="btn btn-primary">Visitez mon profil</a>
 						</div>

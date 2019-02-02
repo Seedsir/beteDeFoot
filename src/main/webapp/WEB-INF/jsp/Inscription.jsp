@@ -41,49 +41,46 @@
 		</div>
 		<div class="interligne">
 		</div>
-    	
-        <form class ="formulaire" method="post" action="Inscription">
-            <fieldset>
-                <legend>Inscription</legend>
-                <p>Vous pouvez vous inscrire via ce formulaire.</p>
-                
-                <label for="pseudo">Pseudo<span class="requis">*</span></label>
-                <input type="text" id="pseudo" name="pseudo" value="<c:out value="${utilisateur.nom}"></c:out>" size="20" maxlength="20" />
-                <span class="erreur">${form.erreurs['nom'] }</span>
-                <br />
+		
+		<form class="formulaire" method="post" action="Inscription">
+			<fieldset>
+				<legend>Inscription</legend>
+				<p>Vous pouvez vous inscrire via ce formulaire.</p>	
+				  
+				  <div class="form-group">
+				    <label for="pseudo">Username:<span class="requis">*</span></label>
+				    <input type="text"  id="pseudo" name="pseudo" class="form-control" required>   
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="email">Email address:<span class="requis">*</span></label>
+				    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+				    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+				  </div>
+				  
+				  <div class="form-group">
+				    <label for="password">Password:<span class="requis">*</span></label>
+				    <input type="text" name="password" class="form-control" id="password" value="" autocomplete="off" required/>
+				  </div>
+				  
+				  <div class="form-group">
+				  	<label for="confirmation">Confirmation du mot de passe <span class="requis">*</span></label>
+                	<input type="password" id="confirmation" name="confirmation" class="form-control"autocomplete="off" required/>
+				  </div>
 
-                <label for="email">Adresse email <span class="requis">*</span></label>
-                <input type="text" id="email" name="email" value="<c:out value="${utilisateur.email}"></c:out>" size="20" maxlength="60" />
-                <span class="erreur">${form.erreurs['email'] }</span>
-                <br />
+				  <div class="form-group">
+				  <label for="favoriteTeam">Votre équipe préférée:<span class="requis">*</span></label>
+					<select class="form-control" id="favoriteTeam" name="favoriteTeam">
+	                <c:forEach items="${teams}" var="team">
+	                	<option value="${team.id}">${team.teamName}</option>
+	                </c:forEach>
+					</select>
+				</div>
+					
+				  <button type="submit" onclick="inscription()" class="btn btn-primary">Inscription</button>
+			</fieldset>
+		</form>
 
-                <label for="motdepasse">Mot de passe <span class="requis">*</span></label>
-                <input type="password" id="motdepasse" name="password" maxlength="20" />
-                <span class="erreur">${form.erreurs['motdepasse'] }</span>
-                <br />
-
-                <label for="confirmation">Confirmation du mot de passe <span class="requis">*</span></label>
-                <input type="password" id="confirmation" name="confirmation" maxlength="20" />
-               	<span class="erreur">${form.erreurs['confirmation'] }</span>
-                <br />
-				<label for="equipe">Votre équipe préférée:<span class="requis">*</span></label>
-				<select id="equipe" name="favoriteTeam">
-                <c:forEach items="${teams}" var="team">
-                	<option value="${team.id}">${team.teamName}</option>
-                </c:forEach>
-				</select>
-				<br />
-                <input type="submit" value="Inscription" class="sansLabel" />
-                <br />
-                <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
-            </fieldset>
-        </form>
-        
-        <div class="legende">
-        	<p><span class="requis">(*)</span> Champs requis</p>
-        </div>
-        
-        </div>
 	<div class="interligne">
 	</div>
 	<div  id="titre_remerciment" class="row">
@@ -122,7 +119,7 @@
 			    <div class="card" >
 						  <img src="/inc/logo_linkedin.png" class="card-img-top  linkedin" alt="logo">
 						<div class="card-body">
-						    <h5 style="border:1px solid black"class="card-title">Linkedin</h5>
+						    <h5 class="card-title">Linkedin</h5>
 						    <p class="card-text">Si vous souhaitez me contacter, vous pouvez cliquer sur ce lien pour consulter mon profil, <span class="requis">ESPOSITO Bastien</span>, sur Linkedin.</p>
 						    <a href="https://www.linkedin.com/in/bastien-esposito-842b70164/" class="btn btn-primary">Visitez mon profil</a>
 						</div>
@@ -155,6 +152,13 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </body>
+    <script type="text/javascript">
+    function inscription(){
+    	alert("je suis bien passé")
+    	if($("#pseudo").val().lenght == 0){
+    		alert("Merci de saisir un Username.")
+    		})
+    	};
+    </script>
     </body>
 </html>

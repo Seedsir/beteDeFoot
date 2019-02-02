@@ -46,115 +46,206 @@
 		</div>
 		<div class="interligne">
 		</div>
-	<form id="profil" class="formulaire" method="post" action="profile">
-		<fieldset>
-			<legend>Données de l'utilisateur</legend>
-			<div>
-				<input id="userId" name="id" type="hidden" value="${sessionScope.userSession.id}">
-			</div>
-			<div class="row">
-				<label class="col-lg-2" for="pseudo">Votre pseudo:</label>
-				<input class="offset-lg-1 col-lg-2" name="pseudo" type="text" value="${sessionScope.userSession.pseudo}"/>
-			</div>
-			<div class="row">
-				<label class="col-lg-2" for="motdepasse">Votre mot de pase:</label>
-				<input class="offset-lg-1 col-lg-2" name="password" type="text" value="${sessionScope.userSession.password}"/>
-			</div>
-			<div class="row">
-				<label class="col-lg-2" for="email">Votre email:</label>
-				<input class="offset-lg-1 col-lg-2" name="email" type="email" value="${sessionScope.userSession.email}"/>
-			</div>
-			<div class="row">
-				<label class="col-lg-2" for="favoriteTeam">Votre équipe préférée:</label>
-				<select class="offset-lg-1 col-lg-3" id="equipe" name="favoriteTeam" >
-                <c:forEach items="${teams}" var="team">
-                	<c:if test="${sessionScope.userSession.favoriteTeam.teamName == team.teamName}">
-                		<option value="${team.id}" selected>${team.teamName}</option>
-                	</c:if>
-                	<c:if test="${sessionScope.userSession.favoriteTeam.teamName != team.teamName}">
-                		<option value="${team.id}">${team.teamName}</option>
-                	</c:if>
-                </c:forEach>
-				</select>
-			</div>
-			<div class="row">
-				<input class="offset-lg-2 col-lg-4 sansLabel" name="update" type="submit" value="Enregistrer les modifications" onClick="Message()"/>
-			</div>
-			
-		</fieldset>	
-	 </form>
-	<div id="equipe_pref">
-		<figure >
-		<figcaption>Votre équipe préférée:</figcaption>
-		<a href="/betedefoot/equipe"><img src="/inc/equipes/${sessionScope.userSession.favoriteTeam.teamName}.png" alt="image" class=" offset-lg-4 col-lg-4"/></a>
-		</figure>
-	</div> 
-	<div class="interligne">
-	</div>
-	<div  id="titre_remerciment" class="row">
-			<div class ="offset-lg-5 col-lg-2"><h2>Remerciements</h2></div>
-	</div>
-	
-	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-		  <ol class="carousel-indicators">
-		    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-		    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-		    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-		    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-		  </ol>
-		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-			    <div class="card">
-					  <img src="/inc/logo.png" class="card-img-top  treeptik" alt="logo">
-					<div class="card-body">
-					    <h5 class="card-title">TreepTik</h5>
-					    <p class="card-text">Un grand merci à <span class="requis">"TreepTik"</span> pour m'avoir accepté au sein de leur entreprise pour mon stage. Je remercie également toute l'équipe quelque soit le service pour l'acceuil et l'aide qu'ils m'ont apporté. Et un remerciement tout particulier pour mon tuteur <span class="requis">Mr GRILLET Michaël</span> qui a pris du temps pour m'accompagner tout le long de ce stage et me transmettre son savoir.</p>
-					    <a href="http://treeptik.fr" class="btn btn-primary">Visitez leur site</a>
-					</div>
-				</div>
-		    </div>
-		    <div class="carousel-item">
-			    <div class="card" >
-						  <img src="/inc/Logo_Afpa.jpg" class="card-img-top  afpa" alt="logo">
-						<div class="card-body">
-						    <h5 class="card-title">AFPA</h5>
-						    <p class="card-text">L'Afpa est un outil de formation qu'il faut préserver et conserver. Je remercie à ce titre <span class="requis">Mr ANSELME Thierry</span> pour m'avoir accompagné tout au long de ma formation.</p>
-						    <a href="https://www.afpa.fr/" class="btn btn-primary">Visitez le site de L'AFPA</a>
-						</div>
-				</div>
-		    </div>
-		    <div class="carousel-item">
-			    <div class="card" >
-						  <img src="/inc/logo_linkedin.png" class="card-img-top  linkedin" alt="logo">
-						<div class="card-body">
-						    <h5 style="border:1px solid black"class="card-title">Linkedin</h5>
-						    <p class="card-text">Si vous souhaitez me contacter, vous pouvez cliquer sur ce lien pour consulter mon profil, <span class="requis">ESPOSITO Bastien</span>, sur Linkedin.</p>
-						    <a href="https://www.linkedin.com/in/bastien-esposito-842b70164/" class="btn btn-primary">Visitez mon profil</a>
-						</div>
-				</div>
-		    </div>
-		    <div class="carousel-item">
-			    <div class="card" >
-						  <img src="/inc/logo_faftt.jpg" class="card-img-top  faftt" alt="logo">
-						<div class="card-body">
-						    <h5 class="card-title">FAFTT</h5>
-						    <p class="card-text">Un grand merci aussi à l'organisme du <span class="requis">FAFTT</span> pour m'avoir accordé le droit de tenté ma chance dans ma nouvelle vie et dans <span class="requis">ma reconversion professionnelle</span>. C'est typiquement le genre d'organisme trop méconnu du grand public et pourtant outil essentiel à la formation de nos jour. N'hésitez pas à jeter un oeil à leur site ainsi qu'aux possibilité qu'ils pourraient vous offrir.</p>
-						    <a href="https://www.faftt.fr/site/j_6/fr/accueil" class="btn btn-primary">Visitez le site du FAFTT</a>
-						</div>
-				</div>
-		  	</div>
-		  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		    <span class="sr-only">Previous</span>
-		  </a>
-		  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		    <span class="sr-only">Next</span>
-		  </a>
+		<div class="user">
+				<i class="fas fa-user"></i><a href="http://localhost:8080/betedefoot/profile" title="Accédez à votre profil en cliquant sur ce lien"><span class="pseudo">${sessionScope.userSession.pseudo}</span> </a>
+				<p class="pseudo">Montant de vos tockens: ${sessionScope.userSession.tockens}</p>
 		</div>
-	</div>
-	<div class="interligne">
-	</div>
+		<div class="deconnexion">
+			<button type="submit" class="btn btn-outline-dark" onclick="deconnexion()">Deconnexion</button>
+		</div>
+		<form class="formulaire" method="post" action="profile" enctype="multipart/form-data">
+			<fieldset>
+			<legend>Données de l'utilisateur</legend>
+			  <div>
+					<input id="userId" name="id" type="hidden" value="${sessionScope.userSession.id}">
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="pseudo">Username:</label>
+			    <input type="text"  name="pseudo" class="form-control"  value="${sessionScope.userSession.pseudo}">   
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="email">Email address:</label>
+			    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="${sessionScope.userSession.email}">
+			    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="motdepasse">Password:</label>
+			    <input type="text" name="password" class="form-control" id="exampleInputPassword1" value="${sessionScope.userSession.password}" />
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="favoriteTeam">Votre équipe préférée:</label>
+			    <select class="form-control" id="equipe" name="favoriteTeam" >
+	                <c:forEach items="${teams}" var="team">
+	                	<c:if test="${sessionScope.userSession.favoriteTeam.teamName == team.teamName}">
+	                		<option value="${team.id}" selected>${team.teamName}</option>
+	                	</c:if>
+	                	<c:if test="${sessionScope.userSession.favoriteTeam.teamName != team.teamName}">
+	                		<option value="${team.id}">${team.teamName}</option>
+	                	</c:if>
+	                </c:forEach>
+				</select>
+			  </div>
+			  <div class="form-group">
+			    <label for="tockens">Tockens: ${sessionScope.userSession.tockens} </label>
+			    <input type="hidden" name="tockens" class="form-control" id="exampleInputPassword1" value="${sessionScope.userSession.tockens}" />
+			  </div>
+			  
+			  <button type="submit" class="btn btn-primary"  onClick="Message()">Enregistrer les modifications</button>
+		</fieldset>
+		</form>	
+		
+		<div id="equipe_pref">
+			<figure >
+			<figcaption>Votre équipe préférée:</figcaption>
+			<a href="/betedefoot/equipe"><img src="/inc/equipes/${sessionScope.userSession.favoriteTeam.teamName}.png" alt="image" class=" offset-lg-4 col-lg-4"/></a>
+			</figure>
+		</div>
+		<div class="recap">
+			<div>
+				<h2>Vos pari en cours</h2>
+				<table class="table">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Numéro du pari</th>
+				      <th scope="col">Equipe choisie</th>
+				      <th scope="col">Montant misé</th>
+				      <th scope="col">Gain potentiel</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">1</th>
+				      <td>Mark</td>
+				      <td>Otto</td>
+				      <td>@mdo</td>
+				      <td>Mark</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">2</th>
+				      <td>Jacob</td>
+				      <td>Thornton</td>
+				      <td>@fat</td>
+				      <td>Mark</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">3</th>
+				      <td>Larry</td>
+				      <td>the Bird</td>
+				      <td>@twitter</td>
+				      <td>Mark</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+			<div>
+				<h2>Vos paris terminés</h2>
+				<table class="table">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">Equipe Choisie</th>
+				      <th scope="col">Montant misé</th>
+				      <th scope="col">Victoire</th>
+				      <th scope="col">Résultat du pari</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr>
+				      <th scope="row">1</th>
+				      <td>Mark</td>
+				      <td>Otto</td>
+				      <td>@mdo</td>
+				      <td>Mark</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">2</th>
+				      <td>Jacob</td>
+				      <td>Thornton</td>
+				      <td>@fat</td>
+				      <td>Mark</td>
+				    </tr>
+				    <tr>
+				      <th scope="row">3</th>
+				      <td>Larry</td>
+				      <td>the Bird</td>
+				      <td>@twitter</td>
+				      <td>Mark</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+		</div>
+		<div class="interligne">
+		</div>
+		<div  id="titre_remerciment" class="row">
+				<div class ="offset-lg-5 col-lg-2"><h2>Remerciements</h2></div>
+		</div>
+		
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			  <ol class="carousel-indicators">
+			    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+			  </ol>
+			  <div class="carousel-inner">
+			    <div class="carousel-item active">
+				    <div class="card">
+						  <img src="/inc/logo.png" class="card-img-top  treeptik" alt="logo">
+						<div class="card-body">
+						    <h5 class="card-title">TreepTik</h5>
+						    <p class="card-text">Un grand merci à <span class="requis">"TreepTik"</span> pour m'avoir accepté au sein de leur entreprise pour mon stage. Je remercie également toute l'équipe quelque soit le service pour l'acceuil et l'aide qu'ils m'ont apporté. Et un remerciement tout particulier pour mon tuteur <span class="requis">Mr GRILLET Michaël</span> qui a pris du temps pour m'accompagner tout le long de ce stage et me transmettre son savoir.</p>
+						    <a href="http://treeptik.fr" class="btn btn-primary">Visitez leur site</a>
+						</div>
+					</div>
+			    </div>
+			    <div class="carousel-item">
+				    <div class="card" >
+							  <img src="/inc/Logo_Afpa.jpg" class="card-img-top  afpa" alt="logo">
+							<div class="card-body">
+							    <h5 class="card-title">AFPA</h5>
+							    <p class="card-text">L'Afpa est un outil de formation qu'il faut préserver et conserver. Je remercie à ce titre <span class="requis">Mr ANSELME Thierry</span> pour m'avoir accompagné tout au long de ma formation.</p>
+							    <a href="https://www.afpa.fr/" class="btn btn-primary">Visitez le site de L'AFPA</a>
+							</div>
+					</div>
+			    </div>
+			    <div class="carousel-item">
+				    <div class="card" >
+							  <img src="/inc/logo_linkedin.png" class="card-img-top  linkedin" alt="logo">
+							<div class="card-body">
+							    <h5 class="card-title">Linkedin</h5>
+							    <p class="card-text">Si vous souhaitez me contacter, vous pouvez cliquer sur ce lien pour consulter mon profil, <span class="requis">ESPOSITO Bastien</span>, sur Linkedin.</p>
+							    <a href="https://www.linkedin.com/in/bastien-esposito-842b70164/" class="btn btn-primary">Visitez mon profil</a>
+							</div>
+					</div>
+			    </div>
+			    <div class="carousel-item">
+				    <div class="card" >
+							  <img src="/inc/logo_faftt.jpg" class="card-img-top  faftt" alt="logo">
+							<div class="card-body">
+							    <h5 class="card-title">FAFTT</h5>
+							    <p class="card-text">Un grand merci aussi à l'organisme du <span class="requis">FAFTT</span> pour m'avoir accordé le droit de tenté ma chance dans ma nouvelle vie et dans <span class="requis">ma reconversion professionnelle</span>. C'est typiquement le genre d'organisme trop méconnu du grand public et pourtant outil essentiel à la formation de nos jour. N'hésitez pas à jeter un oeil à leur site ainsi qu'aux possibilité qu'ils pourraient vous offrir.</p>
+							    <a href="https://www.faftt.fr/site/j_6/fr/accueil" class="btn btn-primary">Visitez le site du FAFTT</a>
+							</div>
+					</div>
+			  	</div>
+			  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+		</div>
+		<div class="interligne">
+		</div>
      	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -165,6 +256,9 @@
 	         var msg="Les modifications ont bien été enregistré!";
 	         console.log(msg)
 	         alert(msg);}
+  		function deconnexion() {
+			window.location = "deconnexion";
+		}
   	</script>
   </body>
 </html>
